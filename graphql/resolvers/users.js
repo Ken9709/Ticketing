@@ -51,14 +51,14 @@ module.exports = {
             if(user && (await bcrypt.compare(password, user.password)))
             {
             const token = jwt.sign(
-                { user_id: newUser._id, email},
+                { user_id: user._id, email},
                 "UNSAFE_STRING", 
                 {
                     expiresIn: "2h"
                 }
             );
             user.token = token;
-
+            
             return { 
                 id: user.id,
                 ...user._doc

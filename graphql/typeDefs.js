@@ -10,10 +10,22 @@ type Message {
 }
 
 type User{
-    username: String,
+    
     email: String,
     password: String,
     token:String
+}
+
+type Ticket{
+    content: String,
+    isAsigned: Boolean,
+    createdAt: String, 
+    createdBy: String
+}
+
+input TicketInput{
+    content: String,
+    isAsigned: Boolean
 }
 
 input MessageInput {
@@ -34,13 +46,15 @@ input LoginInput{
 }
 type Query{
     message(id: ID!): Message,
-    user(id: ID!): User
+    user(id: ID!): User,
+    ticket(id: ID!): Ticket
 }
 
 type Mutation { 
     createMessage(messageInput: MessageInput): Message!,
     registerUser(registerInput: RegisterInput): User,
-    loginUser(loginInput: LoginInput): User
+    loginUser(loginInput: LoginInput): User,
+    createTicket(ticketInput: TicketInput): Ticket
 }
 
 `
